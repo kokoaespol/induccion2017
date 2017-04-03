@@ -1,0 +1,19 @@
+<div class="container">
+
+  <h1>
+    Prueba saves
+  </h1>
+  <hr />
+  {% for user in users %}
+  <div class="art">
+    <h2>
+      Este perfil pertenece a: {{ user.first_name }}
+    </h2>
+    <h3>
+      Su username es: {{ user.username }}
+    </h3>
+  </div>
+  <hr />
+  {% endfor %}
+
+</div>
