@@ -16,7 +16,6 @@ Including another URLconf
 from django.conf.urls import include,url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from proyecto.views import home,register
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,7 +23,4 @@ urlpatterns = [
     url(r'^home/$', auth_views.login, {'template_name': 'home.html'}, name='home'),
     url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
     url(r'^api/', include('rest_framework.urls',namespace='rest_framework')),
-    url(r'^saves/', home, name='saves'),
-    url(r'^register/', register, name='register'),
-
 ]

@@ -1,27 +1,10 @@
-from django.shortcuts import render,render_to_response
 from proyecto.models import User,Profile,Acertijo,Tesoro,Medalla,Facultad
 from proyecto.forms import UserForm,ProfileForm,AcertijoForm,TesoroForm,MedallaForm,FacultadForm
-from django.http import HttpResponseRedirect,HttpResponse
+from django.http import HttpResponse
 from django.template.context_processors import csrf
 # Create your views here.
 
-def home(request):
-	entradas = User.objects.all()[:10]
-	return render_to_response('pruebaSaves.html', {'users' : entradas})
-
-"""def register(request):
-	user_form = UserForm()
-	if request.method == 'POST':
-		user_form = UserForm(request.POST, prefix = "user")
-		if user_form.is_valid():
-			user_form.save()
-			return HttpResponseRedirect('/saves/')
-	args = {}
-	args.update(csrf(request))
-	args['user_form'] = user_form
-	return render_to_response('register.html',args)"""
-
-def generateView(request):
+def savePost(request):
 	user_form = UserForm()
 	profile_form = ProfileForm()
 	acertijo_form = AcertijoForm()
@@ -46,12 +29,7 @@ def generateView(request):
         	tesoro_form.cleaned_data["tesoro"]
         	tesoro_form.save()
         else:
-        	print("Error")
-	args= {}
-	args.update(csrf(request))
-	args['profile_form'] = profile_form
-	args['acertijo_form'] = acertijo_form
-	args['facultad_form'] = facultad_form
-	args['medalla_form'] = medalla_form
-	args['tesoro_form'] = tesoro_form
-	return render(request,'register.html',args)
+        	return HttpResponse(status=500)
+		return HttpResponse(status=200)
+	else:
+		return HttpResponse(status=400)

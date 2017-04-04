@@ -27,7 +27,7 @@ class Profile(models.Model):
     color_camiseta = models.CharField(max_length=10,default='#FFFFFF')#texto
     color_cabello = models.CharField(max_length=10,default='#FFFFFF')#texto
     sexo = models.CharField(max_length=1,choices=SEX,default='H')#texto
-    ranking = models.IntegerField()#entero
+    ranking = models.IntegerField(default=0)#entero
 
     def __unicode__(self):#para llamar
         return self.user #para que tenga nombre
