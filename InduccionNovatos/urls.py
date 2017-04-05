@@ -17,6 +17,16 @@ from django.conf.urls import include,url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from proyecto.views import *
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r'acertijos', AcertijoViewSet)
+router.register(r'tesoro', TesoroViewSet)
+router.register(r'medalla', MedallaViewSet)
+router.register(r'opcion', OpcionViewSet)
+router.register(r'user', UserViewSet)
+router.register(r'profile', ProfileViewSet)
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,10 +34,5 @@ urlpatterns = [
     url(r'^home/$', auth_views.login, {'template_name': 'home.html'}, name='home'),
     url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
     url(r'^api/', include('rest_framework.urls',namespace='rest_framework')),
-    url(r'^proyecto/$', user_list),
-    url(r'^proyecto/facultad$', facultad_list),
-    url(r'^proyecto/medalla$', medalla_list),
-    url(r'^proyecto/tesoro$', tesoro_list),
-    url(r'^proyecto/profile$', profile_list),
-    url(r'^proyecto/acertijo$', acertijo_list),        
+    url(r'^', include(router.urls)),
 ]

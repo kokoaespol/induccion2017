@@ -6,99 +6,36 @@ from django.template.context_processors import csrf
 from django.http import HttpResponse, JsonResponse
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
+from rest_framework import viewsets
 # Create your views here.
 
-@csrf_exempt#user
-def user_list(request):
-    if request.method == 'GET':
-        usuario = User.objects.all()
-        userserializer = UserSerializer(usuario, many=True)
-        return JsonResponse(userserializer.data, safe=False)
 
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = UserSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+class AcertijoViewSet(viewsets.ModelViewSet):
+    queryset = Acertijo.objects.all()
+    serializer_class = AcertijoSerializer
 
-@csrf_exempt#facultad
-def facultad_list(request):
-    if request.method == 'GET':
-        facultad = Facultad.objects.all()
-        facultadserializer = FacultadSerializer(facultad, many=True)
-        return JsonResponse(facultadserializer.data, safe=False)
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = FacultadSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+class TesoroViewSet(viewsets.ModelViewSet):
+    queryset = Tesoro.objects.all()
+    serializer_class = TesoroSerializer
 
-@csrf_exempt#medalla
-def medalla_list(request):
-    if request.method == 'GET':
-        medalla = Medalla.objects.all()
-        medallaserializer = MedallaSerializer(medalla, many=True)
-        return JsonResponse(medallaserializer.data, safe=False)
+class MedallaViewSet(viewsets.ModelViewSet):
+    queryset = Medalla.objects.all()
+    serializer_class = MedallaSerializer
 
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = MedallaSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+class OpcionViewSet(viewsets.ModelViewSet):
+    queryset = Opcion.objects.all()
+    serializer_class = OpcionSerializer
 
-@csrf_exempt#tesoro
-def tesoro_list(request):
-    if request.method == 'GET':
-        tesoro = Tesoro.objects.all()
-        tesoroserializer = TesoroSerializer(tesoro, many=True)
-        return JsonResponse(tesoroserializer.data, safe=False)
+class ProfileViewSet(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
 
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = TesoroSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
 
-@csrf_exempt#profile
-def profile_list(request):
-    if request.method == 'GET':
-        perfil = Profile.objects.all()
-        profileserializer = ProfileSerializer(perfil, many=True)
-        return JsonResponse(profileserializer.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = ProfileSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
-
-@csrf_exempt#acertijo
-def acertijo_list(request):
-    if request.method == 'GET':
-        acertijo = Acertijo.objects.all()
-        acertijoserializer = AcertijoSerializer(acertijo, many=True)
-        return JsonResponse(acertijoserializer.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = AcertijoSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
-
-def savePost(request):
+"""def savePost(request):
     user_form = UserForm()
     profile_form = ProfileForm()
     acertijo_form = AcertijoForm()
@@ -127,4 +64,4 @@ def savePost(request):
             return HttpResponse(status=500)
         return HttpResponse(status=200)
     else:
-        return HttpResponse(status=400)
+        return HttpResponse(status=400)"""
