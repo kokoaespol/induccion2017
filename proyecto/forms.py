@@ -1,5 +1,5 @@
 from django import forms
-from proyecto.models import User,Profile,Acertijo,Tesoro,Medalla,Facultad
+from proyecto.models import User,Profile,Acertijo,Tesoro,Medalla,Facultad,Opcion
 
 class UserForm(forms.ModelForm):
 	class Meta:
@@ -29,4 +29,9 @@ class MedallaForm(forms.ModelForm):
 class TesoroForm(forms.ModelForm):
 	class Meta:
 		model = Tesoro
+		fields = '__all__'
+
+class OpcionForm(forms.ModelForm):
+	class Meta:
+		model = Opcion
 		fields = '__all__'

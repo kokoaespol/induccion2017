@@ -93,4 +93,17 @@ class Tesoro(models.Model):
     class Meta:
         verbose_name = "Tesoro"
         verbose_name_plural = "Tesoros"
+
+class Opcion(models.Model):
+    #relaciones
+    acertijo = models.ForeignKey(Acertijo,on_delete=models.CASCADE)
+    #atributos
+    texto = models.TextField()
+
+    def __unicode__(self):
+        return self.texto
+
+    class Meta:
+        verbose_name = "Opcion"
+        verbose_name_plural = "Opciones"
 #A

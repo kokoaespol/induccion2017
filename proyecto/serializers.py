@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from proyecto.models import User,Profile,Acertijo,Tesoro,Medalla,Facultad
+from proyecto.models import User,Profile,Acertijo,Tesoro,Medalla,Facultad,Opcion
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -28,7 +28,7 @@ class FacultadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Facultad
         fields = (
-            'nombre','profile'
+            'nombre','profile',
         )
 
 class MedallaSerializer(serializers.ModelSerializer):
@@ -49,4 +49,12 @@ class TesoroSerializer(serializers.ModelSerializer):
         fields = (
             'nombre','descripcion','icono',
             'perfil','medalla','facultad','acertijo',
+        )
+
+class OpcionSerializer(serializers.ModelSerializer):
+    acertijo = AcertijoSerializer()
+    class Meta:
+        model =  Opcion
+        fields = (
+            'acertijo','texto',
         )
