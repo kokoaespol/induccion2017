@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from proyecto.views import *
 from rest_framework.routers import DefaultRouter
+from rest_framework_jwt.views import obtain_jwt_token
 
 router = DefaultRouter()
 router.register(r'acertijos', AcertijoViewSet)
@@ -29,6 +30,7 @@ router.register(r'profile', ProfileViewSet)
 
 
 urlpatterns = [
+    url(r'^auth-token/',obtain_jwt_token),
     url(r'^admin/', admin.site.urls),
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
     url(r'^home/$', auth_views.login, {'template_name': 'home.html'}, name='home'),
