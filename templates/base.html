@@ -3,25 +3,25 @@
 <head>
   <meta charset="utf-8">
   <title>{% block title %}Django Simple Login{% endblock %}</title>
+  {% load static %}
+  <link src= "{% static "css/bootstarp.min.css"%}"/>
 </head>
-<body>
+<!--se escribe de esta manera cuando traigo archivos estaticos django-->
+{% load static %}
+<body background= "{% static "img/picture2.jpg"%}" style="background-repeat: no-repeat; background-size: cover;"> <!--se escribe asi por django--> 
   <header>
-    <h1>Django Simple Login</h1>
     {% if user.is_authenticated %}
       Hi {{ user.username }}!
       <a href="{% url 'logout' %}">logout</a>
-    {% else %}
-      <a href="{% url 'login' %}">login</a>
     {% endif %}
   </header>
-  <hr>
   <main>
     {% block content %}
     {% endblock %}
   </main>
-  <hr>
   <footer>
-    <a href="http://simpleisbetterthancomplex.com">simpleisbetterthancomplex.com</a>
   </footer>
+  {% load static %}
+  <script src= "{% static "js/bootstrap.min.js"%}"/>
 </body>
 </html>

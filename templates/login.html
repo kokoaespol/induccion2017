@@ -3,13 +3,18 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
-
-{% load static %}
-<img src="{% static "img/picture1.jpg" %}" />
+<div style="background-color: rgba(0,0,0,0.6); margin-top:10%; padding-top:5%; margin-left:15%; margin-right:15%">
+ <div style="margin-top:5%; padding-bottom:15%; margin-left:20%; margin-right:20%" >
+  <center>
+    <h2>
+      <font color="white">LOGIN</font>
+    </h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Login</button>
+    </form>
+  </center>
+ </div>
+</div>
 {% endblock %}
