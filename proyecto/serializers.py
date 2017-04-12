@@ -43,7 +43,7 @@ class TesoroSerializer(serializers.ModelSerializer):
         model = Tesoro
         fields = (
             'id','nombre','descripcion','icono',
-            'perfil','medalla','facultad','acertijo',
+            'user','medalla','facultad','acertijo',
         )
 
 class OpcionSerializer(serializers.ModelSerializer):
