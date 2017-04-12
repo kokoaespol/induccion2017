@@ -41,6 +41,7 @@ class Acertijo(models.Model):
     titulo = models.CharField(max_length=500)#texto
     descripcion = models.TextField()#textolargo
     respuesta = models.TextField()#textolargo
+    respondido = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.titulo
@@ -99,6 +100,7 @@ class Opcion(models.Model):
     acertijo = models.ForeignKey(Acertijo,on_delete=models.CASCADE)
     #atributos
     texto = models.TextField()
+    correcto = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.texto

@@ -7,6 +7,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = (
             'first_name','last_name','username',
         )
+
 class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer()
     class Meta:
@@ -20,7 +21,7 @@ class AcertijoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Acertijo
         fields = (
-            'titulo','descripcion','respuesta',
+            'titulo','descripcion','respuesta','respondido',
         )
 
 class FacultadSerializer(serializers.ModelSerializer):
@@ -56,5 +57,5 @@ class OpcionSerializer(serializers.ModelSerializer):
     class Meta:
         model =  Opcion
         fields = (
-            'acertijo','texto',
+            'acertijo','texto','correcto',
         )

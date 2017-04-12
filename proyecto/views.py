@@ -35,7 +35,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
 
 
-"""def savePost(request):
+def savePost(request):
     user_form = UserForm()
     profile_form = ProfileForm()
     acertijo_form = AcertijoForm()
@@ -64,4 +64,4 @@ class ProfileViewSet(viewsets.ModelViewSet):
             return HttpResponse(status=500)
         return HttpResponse(status=200)
     else:
-        return HttpResponse(status=400)"""
+        return HttpResponse(status=400)
