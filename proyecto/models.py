@@ -86,7 +86,7 @@ class Tesoro(models.Model):
 #atributos
     nombre = models.CharField(max_length=50)#texto
     descripcion = models.TextField()#textolargo
-    icono = models.ImageField(upload_to = '../image/', default = 'pic_folder/None/no-img.jpg')#imagen
+    icono = models.CharField(max_length=50)#imagen
 
     def __unicode__(self):
         return self.nombre
