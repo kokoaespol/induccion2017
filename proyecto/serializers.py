@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from proyecto.models import User,Profile,Acertijo,Tesoro,Medalla,Facultad,Opcion
+from proyecto.models import Profile,Acertijo,Tesoro,Medalla,Facultad,Opcion
+from django.contrib.auth.models import User
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

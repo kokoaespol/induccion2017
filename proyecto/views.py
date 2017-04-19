@@ -7,6 +7,7 @@ from django.http import HttpResponse, JsonResponse
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from rest_framework import viewsets
+from django.contrib.auth.models import User
 # Create your views here.
 
 
