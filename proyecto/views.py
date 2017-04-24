@@ -8,6 +8,7 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.models import User
 # Create your views here.
 
 

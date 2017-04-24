@@ -1,23 +1,10 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 SEX = (
     ('H','Hombre'),
     ('M','Mujer'),
 )
-#clases
-class User(models.Model):
-#atributos
-    first_name = models.CharField(max_length=10)
-    last_name = models.CharField(max_length=10)
-    username = models.CharField(max_length=10)
-
-    def __unicode__(self):
-        return self.username
-
-    class Meta:
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
 
 class Profile(models.Model):
 #relaciones
