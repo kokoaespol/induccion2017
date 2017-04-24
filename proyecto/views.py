@@ -7,12 +7,14 @@ from django.http import HttpResponse, JsonResponse
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 # Create your views here.
 
 
 class AcertijoViewSet(viewsets.ModelViewSet):
     queryset = Acertijo.objects.all()
     serializer_class = AcertijoSerializer
+    permission_classes = (IsAuthenticated,)
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
