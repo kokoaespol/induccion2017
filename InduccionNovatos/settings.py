@@ -137,3 +137,6 @@ USE_TZ = True
 STATIC_URL = os.path.join(BASE_DIR,'templates/static/')
 STATICFILES_DIRS = [ os.path.join(BASE_DIR, "templates/static"),]
 LOGIN_REDIRECT_URL = 'home'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+

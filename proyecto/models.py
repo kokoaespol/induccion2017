@@ -10,14 +10,14 @@ class Profile(models.Model):
 #relaciones
     user = models.OneToOneField( User, on_delete=models.CASCADE)#uno a uno
 #atributos
-    color_piel = models.CharField(max_length=10,default='#FFFFFF')#texto
-    color_camiseta = models.CharField(max_length=10,default='#FFFFFF')#texto
-    color_cabello = models.CharField(max_length=10,default='#FFFFFF')#texto
-    sexo = models.CharField(max_length=1,choices=SEX,default='H')#texto
-    ranking = models.IntegerField(default=0)#entero
+    color_piel = models.CharField(max_length=10,default='#FFFFFF', null=True, blank=True)#texto
+    color_camiseta = models.CharField(max_length=10,default='#FFFFFF', null=True, blank=True)#texto
+    color_cabello = models.CharField(max_length=10,default='#FFFFFF', null=True, blank=True)#texto
+    sexo = models.CharField(max_length=3,choices=SEX,default='H', null=True, blank=True)#texto
+    ranking = models.IntegerField(default=0, null=True, blank=True)#entero
 
-    def __unicode__(self):#para llamar
-        return self.user #para que tenga nombre
+    def __unicode__(self):
+        return unicode(self.user.username) #para que tenga nombre
 
     class Meta:
         verbose_name = "Profile"
@@ -55,7 +55,8 @@ class Medalla(models.Model):
     titulo = models.CharField(max_length=50)#texto
     descripcion = models.TextField()#textolargo
     n_tesoro = models.IntegerField()#entero
-    icono = models.ImageField(upload_to = '../image/', default = 'pic_folder/None/no-img.jpg')#imagen crear carpeta de default
+    icono = models.CharField(max_length=50)#imagen
+    #icono = models.ImageField(upload_to = '../image/', default = 'pic_folder/None/no-img.jpg')#imagen crear carpeta de default
 
     def __unicode__(self):
         return self.titulo

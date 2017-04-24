@@ -1,15 +1,18 @@
+from django.contrib.auth.models import User
 from django import forms
-from proyecto.models import User,Profile,Acertijo,Tesoro,Medalla,Facultad,Opcion
+from proyecto.models import Profile,Acertijo,Tesoro,Medalla,Facultad,Opcion
 
 class UserForm(forms.ModelForm):
+	password = forms.CharField(widget=forms.PasswordInput())
 	class Meta:
 		model = User
-		fields = '__all__'
+		#fields = '__all__'
+		fields = ('username', 'email', 'password')
 
 class ProfileForm(forms.ModelForm): # form de profile
 	class Meta:
 		model =  Profile
-		fields = '__all__'# al usar all quiere decir que se escogen todos los atributos.
+		fields = ('color_piel', 'color_camiseta', 'color_cabello', 'sexo', 'ranking')
 
 class AcertijoForm(forms.ModelForm):
 	class Meta:

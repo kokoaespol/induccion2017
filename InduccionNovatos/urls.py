@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import include,url
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from proyecto import views
 from proyecto.views import *
 from rest_framework.routers import DefaultRouter
 from rest_framework_jwt.views import obtain_jwt_token
@@ -36,5 +37,7 @@ urlpatterns = [
     url(r'^home/$', auth_views.login, {'template_name': 'home.html'}, name='home'),
     url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
     url(r'^api/', include('rest_framework.urls',namespace='rest_framework')),
+    url('^accounts/', include('django.contrib.auth.urls')),
+    url(r'^register/$', views.register, name='register'),
     url(r'^', include(router.urls)),
 ]
