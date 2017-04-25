@@ -87,7 +87,7 @@ class Tesoro(models.Model):
 
 class Opcion(models.Model):
     #relaciones
-    acertijo = models.ForeignKey(Acertijo,on_delete=models.CASCADE)
+    acertijo = models.ForeignKey(Acertijo,on_delete=models.CASCADE, related_name='opciones')
     #atributos
     texto = models.TextField()
     correcto = models.BooleanField(default=False)

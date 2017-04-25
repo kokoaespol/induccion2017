@@ -17,12 +17,26 @@ class ProfileSerializer(serializers.ModelSerializer):
             'color_cabello','sexo','ranking',
         )
 
+class OpcionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model =  Opcion
+        fields = (
+            'id','acertijo','texto','correcto',
+        )
+
 class AcertijoSerializer(serializers.ModelSerializer):
+    opciones = serializers.SerializerMethodField()
+
     class Meta:
         model = Acertijo
         fields = (
-            'id','titulo','descripcion','respuesta','respondido',
+            'id','titulo','descripcion','respuesta','respondido', 'opciones'
         )
+
+    def get_opciones(self, acertijo):
+        opciones = acertijo.opciones.all()
+        serializer = OpcionSerializer(opciones, many=True)
+        return serializer.data
 
 class FacultadSerializer(serializers.ModelSerializer):
     class Meta:
@@ -45,11 +59,4 @@ class TesoroSerializer(serializers.ModelSerializer):
         fields = (
             'id','nombre','descripcion','icono',
             'user','medalla','facultad','acertijo',
-        )
-
-class OpcionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model =  Opcion
-        fields = (
-            'id','acertijo','texto','correcto',
         )
