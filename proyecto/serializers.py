@@ -6,14 +6,14 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
-            'id','first_name','last_name','username',
+            'id', 'username', 'email', 'password',
         )
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = (
-            'id','user','color_piel','color_camiseta',
+            'id','user','name', 'last_name', 'color_piel','color_camiseta',
             'color_cabello','sexo','ranking',
         )
 

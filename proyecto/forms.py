@@ -12,7 +12,7 @@ class UserForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm): # form de profile
 	class Meta:
 		model =  Profile
-		fields = ('color_piel', 'color_camiseta', 'color_cabello', 'sexo', 'ranking')
+		fields = ('name', 'last_name', 'color_piel', 'color_camiseta', 'color_cabello', 'sexo', 'ranking')
 
 class AcertijoForm(forms.ModelForm):
 	class Meta:

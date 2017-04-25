@@ -10,6 +10,8 @@ class Profile(models.Model):
 #relaciones
     user = models.OneToOneField( User, on_delete=models.CASCADE)#uno a uno
 #atributos
+    name = models.CharField(max_length=50, null=True, blank=True)#texto
+    last_name = models.CharField(max_length=50, null=True, blank=True)#texto
     color_piel = models.CharField(max_length=10,default='#FFFFFF', null=True, blank=True)#texto
     color_camiseta = models.CharField(max_length=10,default='#FFFFFF', null=True, blank=True)#texto
     color_cabello = models.CharField(max_length=10,default='#FFFFFF', null=True, blank=True)#texto
