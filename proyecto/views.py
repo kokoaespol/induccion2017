@@ -44,6 +44,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
 
 
+@csrf_exempt
 def savePost(request):
     user_form = UserForm()
     profile_form = ProfileForm()
@@ -76,7 +77,7 @@ def savePost(request):
         return HttpResponse(status=400)
 
 
-
+@csrf_exempt
 def register(request):
     # Like before, get the request's context.
     context = RequestContext(request)
@@ -123,7 +124,7 @@ def register(request):
         # Print problems to the terminal.
         # They'll also be shown to the user.
         else:
-            print user_form.errors, profile_form.errors
+            print(user_form.errors, profile_form.errors)
 
     # Not a HTTP POST, so we render our form using two ModelForm instances.
     # These forms will be blank, ready for user input.
