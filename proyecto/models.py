@@ -12,6 +12,7 @@ class Profile(models.Model):
 #atributos
     name = models.CharField(max_length=50, null=True, blank=True)#texto
     last_name = models.CharField(max_length=50, null=True, blank=True)#texto
+    email = models.EmailField(max_length=70,blank=True, null=True)
     color_piel = models.CharField(max_length=10,default='#FFFFFF', null=True, blank=True)#texto
     color_camiseta = models.CharField(max_length=10,default='#FFFFFF', null=True, blank=True)#texto
     color_cabello = models.CharField(max_length=10,default='#FFFFFF', null=True, blank=True)#texto

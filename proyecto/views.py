@@ -26,18 +26,22 @@ class UserViewSet(viewsets.ModelViewSet):
 class TesoroViewSet(viewsets.ModelViewSet):
     queryset = Tesoro.objects.all()
     serializer_class = TesoroSerializer
+    permission_classes = (IsAuthenticated,)
 
 class MedallaViewSet(viewsets.ModelViewSet):
     queryset = Medalla.objects.all()
     serializer_class = MedallaSerializer
+    permission_classes = (IsAuthenticated,)
 
 class OpcionViewSet(viewsets.ModelViewSet):
     queryset = Opcion.objects.all()
     serializer_class = OpcionSerializer
+    permission_classes = (IsAuthenticated,)
 
 class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
+    permission_classes = (IsAuthenticated,)
 
 
 def savePost(request):
