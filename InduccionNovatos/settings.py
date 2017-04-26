@@ -26,7 +26,7 @@ SECRET_KEY = ')9ub_-0=dma^=%4z+2yy55zzxu6)t$creb+=cavf-2jmx&53fv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.108']
 
 
 # Application definition
@@ -64,7 +64,8 @@ REST_FRAMEWORK = {
 }
 
 JWT_AUTH= {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=30)
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=30),
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'proyecto.views.jwt_response_payload_handler'
 }
 
 ROOT_URLCONF = 'InduccionNovatos.urls'

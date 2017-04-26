@@ -138,3 +138,9 @@ def register(request):
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered},
             context)
 
+
+def jwt_response_payload_handler(token, user=None, request=None):
+    return {
+        'token': token,
+        'user': UserSerializer(user, context={'request': request}).data
+    }
