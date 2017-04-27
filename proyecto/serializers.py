@@ -50,8 +50,9 @@ class MedallaSerializer(serializers.ModelSerializer):
         model = Medalla
         fields = (
             'id','titulo','descripcion','n_tesoro',
-            'icono',
+            'icono','facultad',
         )
+        depth = 1
 
 class TesoroSerializer(serializers.ModelSerializer):
     class Meta:
@@ -60,4 +61,4 @@ class TesoroSerializer(serializers.ModelSerializer):
             'id','nombre','descripcion','icono',
             'user','medalla','facultad','acertijo',
         )
-        depth = 1
+        depth = 2

@@ -43,6 +43,11 @@ class ProfileViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
     permission_classes = (IsAuthenticated,)
 
+class FacultadViewSet(viewsets.ModelViewSet):
+    queryset = Facultad.objects.all()
+    serializer_class = FacultadSerializer
+    permission_classes = (IsAuthenticated,)
+
 
 @csrf_exempt
 def savePost(request):

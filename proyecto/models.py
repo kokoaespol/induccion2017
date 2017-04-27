@@ -40,8 +40,7 @@ class Acertijo(models.Model):
         verbose_name_plural = "Acertijos"
 
 class Facultad(models.Model):
-#relaciones
-    profile = models.ForeignKey(Profile,default='')#uno a muchos
+
 #atributos
     nombre = models.CharField(max_length=100)#texto
 
@@ -53,6 +52,8 @@ class Facultad(models.Model):
         verbose_name_plural = "Facultades"
 
 class Medalla(models.Model):
+#relaciones
+    facultad = models.ForeignKey(Facultad,default='')#uno a muchos
 #atributos
     titulo = models.CharField(max_length=50)#texto
     descripcion = models.TextField()#textolargo
