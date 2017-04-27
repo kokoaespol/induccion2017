@@ -60,3 +60,4 @@ class TesoroSerializer(serializers.ModelSerializer):
             'id','nombre','descripcion','icono',
             'user','medalla','facultad','acertijo',
         )
+        depth = 1
