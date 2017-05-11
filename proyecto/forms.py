@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django import forms
-from proyecto.models import Profile,Acertijo,Tesoro,Medalla,Facultad,Opcion
+from proyecto.models import Profile,Acertijo,Tesoro,Medalla,Facultad,Opcion,Edificio
 
 class UserForm(forms.ModelForm):
 	password = forms.CharField(widget=forms.PasswordInput())
@@ -37,4 +37,9 @@ class TesoroForm(forms.ModelForm):
 class OpcionForm(forms.ModelForm):
 	class Meta:
 		model = Opcion
+		fields = '__all__'
+
+class EdificioForm(forms.ModelForm):
+	class Meta:
+		model = Edificio
 		fields = '__all__'

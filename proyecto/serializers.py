@@ -1,27 +1,29 @@
 from rest_framework import serializers
-from proyecto.models import Profile,Acertijo,Tesoro,Medalla,Facultad,Opcion
+from proyecto.models import Profile,Acertijo,Tesoro,Medalla,Facultad,Opcion,Edificio
 from django.contrib.auth.models import User
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = (
-            'id', 'username', 'email', 'password',
+            'id', 'username', 'password',
         )
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = (
-            'id','user','name', 'last_name', 'color_piel','color_camiseta',
-            'color_cabello','sexo','ranking',
+            'id','name', 'last_name', 'color_piel','color_camiseta',
+            'color_cabello','sexo','ranking','user','medalla','facultad',
+            'edificio',
         )
+        depth = 1
 
 class OpcionSerializer(serializers.ModelSerializer):
     class Meta:
         model =  Opcion
         fields = (
-            'id','acertijo','texto','correcto',
+            'id','texto','correcto','acertijo',
         )
 
 class AcertijoSerializer(serializers.ModelSerializer):
@@ -30,8 +32,10 @@ class AcertijoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Acertijo
         fields = (
-            'id','titulo','descripcion','respuesta','respondido', 'opciones'
+            'id','titulo','descripcion','respuesta','respondido', 'correcto',
+            'medalla', 'opciones',
         )
+        depth = 1
 
     def get_opciones(self, acertijo):
         opciones = acertijo.opciones.all()
@@ -42,15 +46,21 @@ class FacultadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Facultad
         fields = (
-            'id','nombre','profile',
+            'id','nombre',
+        )
+
+class EdificioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Edificio
+        fields = (
+            'id','nombre','facultad',
         )
 
 class MedallaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Medalla
         fields = (
-            'id','titulo','descripcion','n_tesoro',
-            'icono','facultad',
+            'id','titulo','descripcion','n_tesoro','icono',
         )
         depth = 1
 
@@ -58,7 +68,6 @@ class TesoroSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tesoro
         fields = (
-            'id','nombre','descripcion','icono',
-            'user','medalla','facultad','acertijo',
+            'id','nombre','descripcion','icono','acertijo',
         )
         depth = 2

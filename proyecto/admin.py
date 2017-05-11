@@ -17,3 +17,6 @@ admin.site.register(Profile)
 admin.site.register(Tesoro)
 admin.site.register(Medalla)
 admin.site.register(Facultad)
+admin.site.register(Opcion)
+admin.site.register(Edificio)
+

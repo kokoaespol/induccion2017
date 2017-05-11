@@ -1,6 +1,6 @@
-from proyecto.serializers import UserSerializer,ProfileSerializer,AcertijoSerializer,TesoroSerializer,MedallaSerializer,FacultadSerializer,OpcionSerializer
-from proyecto.forms import UserForm,ProfileForm,AcertijoForm,TesoroForm,MedallaForm,FacultadForm,OpcionForm
-from proyecto.models import User,Profile,Acertijo,Tesoro,Medalla,Facultad,Opcion
+from proyecto.serializers import UserSerializer,ProfileSerializer,AcertijoSerializer,TesoroSerializer,MedallaSerializer,FacultadSerializer,OpcionSerializer,EdificioSerializer
+from proyecto.forms import UserForm,ProfileForm,AcertijoForm,TesoroForm,MedallaForm,FacultadForm,OpcionForm,EdificioForm
+from proyecto.models import User,Profile,Acertijo,Tesoro,Medalla,Facultad,Opcion,Edificio
 from django.views.decorators.csrf import csrf_exempt
 from django.template.context_processors import csrf
 from django.http import HttpResponse, JsonResponse
@@ -46,6 +46,11 @@ class ProfileViewSet(viewsets.ModelViewSet):
 class FacultadViewSet(viewsets.ModelViewSet):
     queryset = Facultad.objects.all()
     serializer_class = FacultadSerializer
+    permission_classes = (IsAuthenticated,)
+
+class EdificioViewSet(viewsets.ModelViewSet):
+    queryset = Edificio.objects.all()
+    serializer_class = EdificioSerializer
     permission_classes = (IsAuthenticated,)
 
 

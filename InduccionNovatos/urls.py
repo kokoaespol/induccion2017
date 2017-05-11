@@ -28,6 +28,8 @@ router.register(r'medalla', MedallaViewSet)
 router.register(r'opcion', OpcionViewSet)
 router.register(r'user', UserViewSet)
 router.register(r'profile', ProfileViewSet)
+router.register(r'facultad', FacultadViewSet)
+router.register(r'edificio', EdificioViewSet)
 
 
 urlpatterns = [
