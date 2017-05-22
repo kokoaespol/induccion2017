@@ -1,6 +1,7 @@
-from proyecto.serializers import UserSerializer,ProfileSerializer,AcertijoSerializer,TesoroSerializer,MedallaSerializer,FacultadSerializer,OpcionSerializer,EdificioSerializer
-from proyecto.forms import UserForm,ProfileForm,AcertijoForm,TesoroForm,MedallaForm,FacultadForm,OpcionForm,EdificioForm
-from proyecto.models import User,Profile,Acertijo,Tesoro,Medalla,Facultad,Opcion,Edificio
+#from proyecto.serializers import UserSerializer,ProfileSerializer,AcertijoSerializer,TesoroSerializer,MedallaSerializer,FacultadSerializer,OpcionSerializer,EdificioSerializer
+from proyecto.serializers import *
+from proyecto.forms import *#UserForm,ProfileForm,AcertijoForm,TesoroForm,MedallaForm,FacultadForm,OpcionForm,EdificioForm
+from proyecto.models import *#User,Profile,Acertijo,Tesoro,Medalla,Facultad,Opcion,Edificio
 from django.views.decorators.csrf import csrf_exempt
 from django.template.context_processors import csrf
 from django.http import HttpResponse, JsonResponse
@@ -14,28 +15,28 @@ from django.shortcuts import render_to_response
 # Create your views here.
 
 
-class AcertijoViewSet(viewsets.ModelViewSet):
-    queryset = Acertijo.objects.all()
-    serializer_class = AcertijoSerializer
+class PuzzleViewSet(viewsets.ModelViewSet):
+    queryset = Puzzle.objects.all()
+    serializer_class = PuzzleSerializer
     permission_classes = (IsAuthenticated,)
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-class TesoroViewSet(viewsets.ModelViewSet):
-    queryset = Tesoro.objects.all()
-    serializer_class = TesoroSerializer
+class TreasureViewSet(viewsets.ModelViewSet):
+    queryset = Treasure.objects.all()
+    serializer_class = TreasureSerializer
     permission_classes = (IsAuthenticated,)
 
-class MedallaViewSet(viewsets.ModelViewSet):
-    queryset = Medalla.objects.all()
-    serializer_class = MedallaSerializer
+class MedalViewSet(viewsets.ModelViewSet):
+    queryset = Medal.objects.all()
+    serializer_class = MedalSerializer
     permission_classes = (IsAuthenticated,)
 
-class OpcionViewSet(viewsets.ModelViewSet):
-    queryset = Opcion.objects.all()
-    serializer_class = OpcionSerializer
+class OptionViewSet(viewsets.ModelViewSet):
+    queryset = Option.objects.all()
+    serializer_class = OptionSerializer
     permission_classes = (IsAuthenticated,)
 
 class ProfileViewSet(viewsets.ModelViewSet):
@@ -43,14 +44,24 @@ class ProfileViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
     permission_classes = (IsAuthenticated,)
 
-class FacultadViewSet(viewsets.ModelViewSet):
-    queryset = Facultad.objects.all()
-    serializer_class = FacultadSerializer
+class DepartmentViewSet(viewsets.ModelViewSet):
+    queryset = Department.objects.all()
+    serializer_class = DepartmentSerializer
     permission_classes = (IsAuthenticated,)
 
-class EdificioViewSet(viewsets.ModelViewSet):
-    queryset = Edificio.objects.all()
-    serializer_class = EdificioSerializer
+class BlockViewSet(viewsets.ModelViewSet):
+    queryset = Block.objects.all()
+    serializer_class = BlockSerializer
+    permission_classes = (IsAuthenticated,)
+
+class PuzzleTreasureViewSet(viewsets.ModelViewSet):
+    queryset = PuzzleTreasure.objects.all()
+    serializer_class = PuzzleTreasureSerializer
+    permission_classes = (IsAuthenticated,)
+
+class PuzzleProfileViewSet(viewsets.ModelViewSet):
+    queryset = PuzzleProfile.objects.all()
+    serializer_class = PuzzleProfileSerializer
     permission_classes = (IsAuthenticated,)
 
 

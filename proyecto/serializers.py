@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from proyecto.models import Profile,Acertijo,Tesoro,Medalla,Facultad,Opcion,Edificio
+from .models import *
 from django.contrib.auth.models import User
 
 class UserSerializer(serializers.ModelSerializer):
@@ -13,61 +13,72 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = (
-            'id','name', 'last_name', 'color_piel','color_camiseta',
-            'color_cabello','sexo','ranking','user','medalla','facultad',
-            'edificio',
+            'id','name', 'last_name', 'skin','shirt',
+            'hair','genre','ranking','user',
         )
         depth = 1
 
-class OpcionSerializer(serializers.ModelSerializer):
+class OptionSerializer(serializers.ModelSerializer):
     class Meta:
-        model =  Opcion
+        model =  Option
         fields = (
-            'id','texto','correcto','acertijo',
+            'id','name','is_answer','puzzle'
         )
 
-class AcertijoSerializer(serializers.ModelSerializer):
-    opciones = serializers.SerializerMethodField()
+class PuzzleSerializer(serializers.ModelSerializer):
+    options = serializers.SerializerMethodField()
 
     class Meta:
-        model = Acertijo
+        model = Puzzle
         fields = (
-            'id','titulo','descripcion','respuesta','respondido', 'correcto',
-            'medalla', 'opciones',
+            'id','name','description','medal','options',
         )
         depth = 1
 
-    def get_opciones(self, acertijo):
-        opciones = acertijo.opciones.all()
-        serializer = OpcionSerializer(opciones, many=True)
+    def get_opciones(self, puzzle):
+        options = puzzle.options.all()
+        serializer = OptionSerializer(options, many=True)
         return serializer.data
 
-class FacultadSerializer(serializers.ModelSerializer):
+class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Facultad
+        model = Department
         fields = (
-            'id','nombre',
+            'id','name',
         )
 
-class EdificioSerializer(serializers.ModelSerializer):
+class BlockSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Edificio
+        model = Block
         fields = (
-            'id','nombre','facultad',
+            'id','name','department',
         )
 
-class MedallaSerializer(serializers.ModelSerializer):
+class MedalSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Medalla
+        model = Medal
         fields = (
-            'id','titulo','descripcion','n_tesoro','icono',
+            'id','name','description','n_puzzle','image','block',
         )
         depth = 1
 
-class TesoroSerializer(serializers.ModelSerializer):
+class TreasureSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Tesoro
+        model = Treasure
         fields = (
-            'id','nombre','descripcion','icono','acertijo',
+            'id','name','description','image',
         )
-        depth = 2
+
+class PuzzleTreasureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PuzzleTreasure
+        fields = (
+            'id','puzzle','treasure',
+        )
+
+class PuzzleProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PuzzleProfile
+        fields = (
+            'id','is_correct','puzzle','profile',
+        )

@@ -2,21 +2,24 @@ from django.contrib import admin
 from .models import *
 # Register your models here.
 
-class OpcionInline(admin.TabularInline):
-    model = Opcion
+class OptionInline(admin.TabularInline):
+    model = Option
     extra = 4
     min_num = 4
     max_num = 4
 
-@admin.register(Acertijo)
+@admin.register(Puzzle)
 class AcertijoAdmin(admin.ModelAdmin):
-    inlines = [OpcionInline,]
-    list_display = ('titulo', 'descripcion', 'respuesta', 'respondido')
+    inlines = [OptionInline,]
+    list_display = ('name', 'description','medal')
 
 admin.site.register(Profile)
-admin.site.register(Tesoro)
-admin.site.register(Medalla)
-admin.site.register(Facultad)
-admin.site.register(Opcion)
-admin.site.register(Edificio)
+#admin.site.register(Puzzle)
+admin.site.register(Treasure)
+admin.site.register(Medal)
+admin.site.register(Department)
+admin.site.register(Option)
+admin.site.register(Block)
+admin.site.register(PuzzleTreasure)
+admin.site.register(PuzzleProfile)
 

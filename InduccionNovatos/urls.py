@@ -22,14 +22,16 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_jwt.views import obtain_jwt_token
 
 router = DefaultRouter()
-router.register(r'acertijos', AcertijoViewSet)
-router.register(r'tesoro', TesoroViewSet)
-router.register(r'medalla', MedallaViewSet)
-router.register(r'opcion', OpcionViewSet)
-router.register(r'user', UserViewSet)
-router.register(r'profile', ProfileViewSet)
-router.register(r'facultad', FacultadViewSet)
-router.register(r'edificio', EdificioViewSet)
+router.register(r'puzzles', PuzzleViewSet)
+router.register(r'treasures', TreasureViewSet)
+router.register(r'medals', MedalViewSet)
+router.register(r'options', OptionViewSet)
+router.register(r'users', UserViewSet)
+router.register(r'profiles', ProfileViewSet)
+router.register(r'departments', DepartmentViewSet)
+router.register(r'blocks', BlockViewSet)
+router.register(r'puzzleprofile', PuzzleProfileViewSet)
+router.register(r'puzzletreasure', PuzzleTreasureViewSet)
 
 
 urlpatterns = [

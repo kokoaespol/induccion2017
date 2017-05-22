@@ -6,63 +6,75 @@ SEX = (
     ('M','Mujer'),
 )
 
-class Facultad(models.Model):
+class Department(models.Model):
 #atributos
-    nombre = models.CharField(max_length=100)#texto
+    name = models.CharField(max_length=100)#texto
 
     def __unicode__(self):
-        return self.nombre
+        return self.name
 
     class Meta:
-        verbose_name = "Facultad"
-        verbose_name_plural = "Facultades"
+        verbose_name = "Department"
+        verbose_name_plural = "Departments"
 
 
-class Edificio(models.Model):
-    nombre = models.CharField(max_length=100)#texto
+class Block(models.Model):
+#atributos
+    name = models.CharField(max_length=100)#texto
 #relaciones
-    facultad = models.ForeignKey(Facultad,default='', related_name='facultad')#uno a muchos
+    department = models.ForeignKey(Department,default='', related_name='department')#uno a muchos
     
     def __unicode__(self):
-        return self.nombre
+        return self.name
 
     class Meta:
-        verbose_name = "Edificio"
-        verbose_name_plural = "Edificios"
+        verbose_name = "Block"
+        verbose_name_plural = "Blocks"
 
-class Medalla(models.Model):
-#relaciones
-    #facultad = models.ForeignKey(Facultad,default='', related_name='facultades')#uno a muchos
-    #profile = models.ManyToManyField(Profile, null=True, blank=True)#muchos a muchos
+class Medal(models.Model):
 #atributos
-    titulo = models.CharField(max_length=50)#texto
-    descripcion = models.TextField()#textolargo
-    n_tesoro = models.IntegerField()#entero
-    icono = models.CharField(max_length=50)#imagen
-    #icono = models.ImageField(upload_to = '../image/', default = 'pic_folder/None/no-img.jpg')#imagen crear carpeta de default
+    name = models.CharField(max_length=50)#texto
+    description = models.TextField()#textolargo
+    n_puzzle = models.IntegerField()#entero
+    #image = models.CharField(max_length=50)#imagen
+    image = models.ImageField(upload_to = 'images/', default = 'pic_folder/None/no-img.jpg')#imagen crear carpeta de default
+#relaciones
+    block = models.ForeignKey(Block,default='', related_name='blocks')#uno a muchos
+    #profile = models.ManyToManyField(Profile, null=True, blank=True)#muchos a muchos
 
     def __unicode__(self):
-        return self.titulo
+        return self.name
 
     class Meta:
-        verbose_name = "Medalla"
-        verbose_name_plural = "Medallas"
+        verbose_name = "Medal"
+        verbose_name_plural = "Medals"
 
+
+class Puzzle(models.Model):
+#atributos
+    name = models.CharField(max_length=500)#texto
+    description = models.TextField()#textolargo
+#relaciones
+    medal = models.ForeignKey(Medal ,default='', related_name='medals')#uno a muchos
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Puzzle"
+        verbose_name_plural = "Puzzles"
 
 class Profile(models.Model):
-#relaciones
-    user = models.OneToOneField( User, on_delete=models.CASCADE, related_name='user')#uno a uno
-    medalla = models.ManyToManyField(Medalla, null=True, blank=True)#muchos a muchos
-    facultad = models.ForeignKey(Facultad ,default='', related_name='facultades', null=True, blank=True)#uno a muchos
-    edificio = models.ForeignKey(Edificio ,default='', related_name='edificios', null=True, blank=True)#uno a muchos
 #atributos
     name = models.CharField(max_length=50, null=True, blank=True)#texto
     last_name = models.CharField(max_length=50, null=True, blank=True)#texto
-    color_piel = models.CharField(max_length=10,default='#FFFFFF', null=True, blank=True)#texto
-    color_camiseta = models.CharField(max_length=10,default='#FFFFFF', null=True, blank=True)#texto
-    color_cabello = models.CharField(max_length=10,default='#FFFFFF', null=True, blank=True)#texto
-    sexo = models.CharField(max_length=3,choices=SEX,default='H', null=True, blank=True)#texto
+    skin = models.CharField(max_length=10,default='#FFFFFF', null=True, blank=True)#texto
+    shirt = models.CharField(max_length=10,default='#FFFFFF', null=True, blank=True)#texto
+    hair = models.CharField(max_length=10,default='#FFFFFF', null=True, blank=True)#texto
+    genre = models.CharField(max_length=3,choices=SEX,default='H', null=True, blank=True)#texto
     ranking = models.IntegerField(default=0, null=True, blank=True)#entero
+#relaciones
+    user = models.OneToOneField( User, on_delete=models.CASCADE, related_name='user')#uno a uno
 
     def __unicode__(self):
         return unicode(self.user.username) #para que tenga nombre
@@ -72,50 +84,57 @@ class Profile(models.Model):
         verbose_name_plural = "Profiles"
 
 
-
-class Acertijo(models.Model):
-#relaciones
-    medalla = models.ForeignKey(Medalla ,default='', related_name='medallas')#uno a muchos
+class PuzzleProfile(models.Model):
 #atributos
-    titulo = models.CharField(max_length=500)#texto
-    descripcion = models.TextField()#textolargo
-    respuesta = models.TextField()#textolargo
-    respondido = models.BooleanField(default=False)
-    correcto = models.BooleanField(default=False)
+    is_correct = models.BooleanField(default=False)
+#relaciones
+    puzzle = models.ForeignKey(Puzzle ,default='', related_name='puzzlesprof')#uno a muchos
+    profile = models.ForeignKey(Profile ,default='', related_name='profiles')#uno a muchos
 
     def __unicode__(self):
-        return self.titulo
+        return self.profile.user.username
 
     class Meta:
-        verbose_name = "Acertijo"
-        verbose_name_plural = "Acertijos"
+        verbose_name = "PuzzleProfile"
+        verbose_name_plural = "PuzzlesProfiles"
 
-class Tesoro(models.Model):
-#relaciones
-    acertijo = models.ForeignKey( Acertijo, null=True, blank=True, related_name='acertijos')#uno a uno
-#atributos
-    nombre = models.CharField(max_length=50)#texto
-    descripcion = models.TextField()#textolargo
-    icono = models.CharField(max_length=50)#imagen
+
+class Treasure(models.Model):
+    name = models.CharField(max_length=50)#texto
+    description = models.TextField()#textolargo
+    image = models.ImageField(upload_to = 'images/', default = 'pic_folder/None/no-img.jpg')
 
     def __unicode__(self):
-        return self.nombre
+        return self.name
 
     class Meta:
-        verbose_name = "Tesoro"
-        verbose_name_plural = "Tesoros"
+        verbose_name = "Treasure"
+        verbose_name_plural = "Treasures"
 
-class Opcion(models.Model):
+
+class PuzzleTreasure(models.Model):
 #relaciones
-    acertijo = models.ForeignKey(Acertijo,on_delete=models.CASCADE, related_name='opciones')
-#atributos
-    texto = models.TextField()
-    correcto = models.BooleanField(default=False)
+    puzzle = models.ForeignKey(Puzzle ,default='', related_name='puzzlestreas')#uno a muchos
+    treasure = models.ForeignKey(Treasure ,default='', related_name='treasures')#uno a muchos
 
     def __unicode__(self):
-        return self.texto
+        return self.treasure.name
 
     class Meta:
-        verbose_name = "Opcion"
-        verbose_name_plural = "Opciones"
+        verbose_name = "PuzzleTreasure"
+        verbose_name_plural = "PuzzleTreasures"
+
+class Option(models.Model):
+#relaciones
+    puzzle = models.ForeignKey(Puzzle,on_delete=models.CASCADE, related_name='optiones')
+#atributos
+    name = models.TextField()
+    is_answer = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Option"
+        verbose_name_plural = "Options"
 #A
