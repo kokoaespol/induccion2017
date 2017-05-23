@@ -35,7 +35,7 @@ class PuzzleSerializer(serializers.ModelSerializer):
         )
         depth = 1
 
-    def get_opciones(self, puzzle):
+    def get_options(self, puzzle):
         options = puzzle.options.all()
         serializer = OptionSerializer(options, many=True)
         return serializer.data

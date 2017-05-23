@@ -126,7 +126,7 @@ class PuzzleTreasure(models.Model):
 
 class Option(models.Model):
 #relaciones
-    puzzle = models.ForeignKey(Puzzle,on_delete=models.CASCADE, related_name='optiones')
+    puzzle = models.ForeignKey(Puzzle,on_delete=models.CASCADE, related_name='options')
 #atributos
     name = models.TextField()
     is_answer = models.BooleanField(default=False)
