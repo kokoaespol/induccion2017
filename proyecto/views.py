@@ -12,6 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.shortcuts import render_to_response
+from django_filters.rest_framework import DjangoFilterBackend
 # Create your views here.
 
 
@@ -19,6 +20,8 @@ class PuzzleViewSet(viewsets.ModelViewSet):
     queryset = Puzzle.objects.all()
     serializer_class = PuzzleSerializer
     permission_classes = (IsAuthenticated,)
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('id',)
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -48,6 +51,8 @@ class DepartmentViewSet(viewsets.ModelViewSet):
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
     permission_classes = (IsAuthenticated,)
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('name',)
 
 class BlockViewSet(viewsets.ModelViewSet):
     queryset = Block.objects.all()
@@ -63,7 +68,8 @@ class PuzzleProfileViewSet(viewsets.ModelViewSet):
     queryset = PuzzleProfile.objects.all()
     serializer_class = PuzzleProfileSerializer
     permission_classes = (IsAuthenticated,)
-
+    filter_backends = (DjangoFilterBackend,)
+    filter_fields = ('id','puzzle','profile',)
 
 @csrf_exempt
 def savePost(request):

@@ -61,6 +61,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+
 }
 
 JWT_AUTH= {
@@ -140,4 +142,3 @@ STATICFILES_DIRS = [ os.path.join(BASE_DIR, "templates/static"),]
 LOGIN_REDIRECT_URL = 'home'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
