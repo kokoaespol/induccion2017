@@ -12,11 +12,6 @@ class UserForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm): # form de profile
 	class Meta:
 		model =  Profile
-		fields = ('name', 'last_name', 'skin', 'shirt', 'hair', 'genre', 'ranking')
-
-class PuzzleForm(forms.ModelForm):
-	class Meta:
-		model = Puzzle
 		fields = '__all__'
 
 class DepartmentForm(forms.ModelForm):
@@ -34,12 +29,42 @@ class TreasureForm(forms.ModelForm):
 		model = Treasure
 		fields = '__all__'
 
-class OptionForm(forms.ModelForm):
-	class Meta:
-		model = Option
-		fields = '__all__'
-
 class BlockForm(forms.ModelForm):
 	class Meta:
 		model = Block
+		fields = '__all__'
+
+class MisionForm(forms.ModelForm):
+	class Meta:
+		model = Mision
+		fields = '__all__'
+
+class TypeRForm(forms.ModelForm):
+	class Meta:
+		model = TypeR
+		fields = '__all__'
+
+class TypeTForm(forms.ModelForm):
+	class Meta:
+		model = TypeT
+		fields = '__all__'
+
+class KeyRForm(forms.ModelForm):
+	class Meta:
+		model = KeyR
+		fields = '__all__'
+
+class KeyTForm(forms.ModelForm):
+	class Meta:
+		model = KeyT
+		fields = '__all__'
+
+class RoomForm(forms.ModelForm):
+	class Meta:
+		model = Room
+		fields = '__all__'
+
+class MisionProfileForm(forms.ModelForm):
+	class Meta:
+		model = MisionProfile
 		fields = '__all__'

@@ -16,9 +16,9 @@ from django_filters.rest_framework import DjangoFilterBackend
 # Create your views here.
 
 
-class PuzzleViewSet(viewsets.ModelViewSet):
-    queryset = Puzzle.objects.all()
-    serializer_class = PuzzleSerializer
+class MisionViewSet(viewsets.ModelViewSet):
+    queryset = Mision.objects.all()
+    serializer_class = MisionSerializer
     permission_classes = (IsAuthenticated,)
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('id',)
@@ -35,11 +35,6 @@ class TreasureViewSet(viewsets.ModelViewSet):
 class MedalViewSet(viewsets.ModelViewSet):
     queryset = Medal.objects.all()
     serializer_class = MedalSerializer
-    permission_classes = (IsAuthenticated,)
-
-class OptionViewSet(viewsets.ModelViewSet):
-    queryset = Option.objects.all()
-    serializer_class = OptionSerializer
     permission_classes = (IsAuthenticated,)
 
 class ProfileViewSet(viewsets.ModelViewSet):
@@ -59,17 +54,52 @@ class BlockViewSet(viewsets.ModelViewSet):
     serializer_class = BlockSerializer
     permission_classes = (IsAuthenticated,)
 
-class PuzzleTreasureViewSet(viewsets.ModelViewSet):
-    queryset = PuzzleTreasure.objects.all()
-    serializer_class = PuzzleTreasureSerializer
+class MisionProfileViewSet(viewsets.ModelViewSet):
+    queryset = MisionProfile.objects.all()
+    serializer_class = MisionProfileSerializer
     permission_classes = (IsAuthenticated,)
 
-class PuzzleProfileViewSet(viewsets.ModelViewSet):
-    queryset = PuzzleProfile.objects.all()
-    serializer_class = PuzzleProfileSerializer
+
+class TypeRViewSet(viewsets.ModelViewSet):
+    queryset = TypeR.objects.all()
+    serializer_class = TypeRSerializer
     permission_classes = (IsAuthenticated,)
     filter_backends = (DjangoFilterBackend,)
-    filter_fields = ('id','puzzle','profile',)
+    #filter_fields = ('name',)
+
+
+class TypeTViewSet(viewsets.ModelViewSet):
+    queryset = TypeT.objects.all()
+    serializer_class = TypeTSerializer
+    permission_classes = (IsAuthenticated,)
+    filter_backends = (DjangoFilterBackend,)
+    #filter_fields = ('name',)
+
+class KeyRViewSet(viewsets.ModelViewSet):
+    queryset = KeyR.objects.all()
+    serializer_class = KeyRSerializer
+    permission_classes = (IsAuthenticated,)
+    filter_backends = (DjangoFilterBackend,)
+    #filter_fields = ('name',)
+
+class KeyTViewSet(viewsets.ModelViewSet):
+    queryset = KeyT.objects.all()
+    serializer_class = KeyTSerializer
+    permission_classes = (IsAuthenticated,)
+    filter_backends = (DjangoFilterBackend,)
+    #filter_fields = ('name',)
+
+class RoomViewSet(viewsets.ModelViewSet):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
+    permission_classes = (IsAuthenticated,)
+    filter_backends = (DjangoFilterBackend,)
+    #filter_fields = ('name',)
+
+
+
+
+
 
 @csrf_exempt
 def savePost(request):

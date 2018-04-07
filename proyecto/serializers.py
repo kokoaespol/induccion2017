@@ -13,32 +13,26 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = (
-            'id','name', 'last_name', 'skin','shirt',
-            'hair','genre','ranking','user',
+            'id','name', 'last_name', 'skin',
+            'genre','ranking','user',
         )
         depth = 1
 
-class OptionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model =  Option
-        fields = (
-            'id','name','is_answer','puzzle'
-        )
-
-class PuzzleSerializer(serializers.ModelSerializer):
-    options = serializers.SerializerMethodField()
+class MisionSerializer(serializers.ModelSerializer):
+    #options = serializers.SerializerMethodField()
 
     class Meta:
-        model = Puzzle
+        model = Mision
         fields = (
-            'id','name','description','medal','options',
+            'id','name','description','mision',
         )
         depth = 1
-
+    '''
     def get_options(self, puzzle):
         options = puzzle.options.all()
         serializer = OptionSerializer(options, many=True)
         return serializer.data
+    '''
 
 class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -58,7 +52,7 @@ class MedalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Medal
         fields = (
-            'id','name','description','n_puzzle','image','block',
+            'id','name','description','n_puzzle','image',
         )
         depth = 1
 
@@ -67,18 +61,52 @@ class TreasureSerializer(serializers.ModelSerializer):
         model = Treasure
         fields = (
             'id','name','description','image',
+            'room','keyT','mision',
         )
 
-class PuzzleTreasureSerializer(serializers.ModelSerializer):
+class MisionProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PuzzleTreasure
+        model = MisionProfile
         fields = (
-            'id','puzzle','treasure',
+            'id','name','description','is_correct',
+            'mision','profile',
         )
 
-class PuzzleProfileSerializer(serializers.ModelSerializer):
+
+class RoomSerializer(serializers.ModelSerializer):
     class Meta:
-        model = PuzzleProfile
+        model = Room
         fields = (
-            'id','is_correct','puzzle','profile',
+            'id','name','description','block','keyR',
         )
+
+
+class TypeRSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TypeR
+        fields = (
+            'id','name','description',
+        )
+
+class TypeTSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TypeT
+        fields = (
+            'id','name','description',
+        )
+
+class KeyRSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = KeyR
+        fields = (
+            'id','name','description','posX','posY','typeR',
+        )
+
+
+class KeyTSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = KeyT
+        fields = (
+            'id','name','description','posX','posY','typeT',
+        )
+
